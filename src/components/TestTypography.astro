@@ -1,0 +1,62 @@
+---
+// Version SIMPLE pour commencer
+interface Portfolio {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+interface Props {
+  portfolios?: Portfolio[]; // Le ? signifie "optionnel"
+}
+
+// ✅ SOLUTION : Valeur par défaut si portfolios n'existe pas
+const { portfolios = [] } = Astro.props;
+---
+
+<section class="py-20 main-section">
+  <div class="main-container">
+    
+    <!-- SI pas d'éléments -->
+    {portfolios.length === 0 && (
+      <div class="alert alert-warning">
+        <p>Aucun portfolio à afficher</p>
+      </div>
+    )}
+    
+    <!-- SI il y a des éléments -->
+    {portfolios.length > 0 && (
+      <div class="cards-grid">
+        
+        <!-- POUR CHAQUE portfolio dans la liste -->
+        {portfolios.map((portfolio) => (
+          <div class="card-item-portfolio">
+            <div class="card">
+              
+              <!-- Image -->
+              <img 
+                src={portfolio.imageUrl} 
+                alt={portfolio.title}
+                class="card-image-portfolio"
+              />
+              
+              <!-- Titre -->
+              <h2 class="card-title-portfolio">
+                {portfolio.title}
+              </h2>
+              
+              <!-- Description -->
+              <p class="card-description">
+                {portfolio.description}
+              </p>
+              
+            </div>
+          </div>
+        ))}
+        
+      </div>
+    )}
+    
+  </div>
+</section>
