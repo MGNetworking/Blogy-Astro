@@ -1,141 +1,152 @@
-/* TailwindCSS 4 */
-
-/* Import de Tailwind CSS */
 @import "tailwindcss";
 
-/* Classes personnalisées basées sur tes patterns HTML existants */
-@layer components {
-  /* BOUTONS */
-  .btn-primary {
-    @apply inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors;
-  }
+/* Styles de base */
+body {
+  @apply text-gray-300 bg-gray-900 font-sans antialiased;
+}
 
-  .btn-secondary {
-    @apply inline-flex items-center px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 transition-colors;
-  }
+/* Classes personnalisées avec @utility (syntaxe Tailwind CSS 4) */
 
-  .btn-link {
-    @apply inline-flex items-center text-blue-600 hover:text-blue-700 font-medium;
-  }
+/* NAVBAR */
+@utility navbar {
+  @apply bg-gray-800/90 backdrop-blur-md text-white border-b border-gray-700;
+}
 
-  /* CARDS */
-  .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden;
-  }
+@utility navbar-link {
+  @apply text-gray-300 hover:text-yellow-400 transition-colors font-medium;
+}
 
-  /* TITRES DE SECTION */
-  .section-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-900 mb-4;
-  }
+/* FOOTER */
+@utility footer {
+  @apply bg-gray-800/90 text-white py-12 border-t border-gray-700;
+}
 
-  .section-subtitle {
-    @apply text-xl text-gray-600 max-w-2xl mx-auto;
-  }
+@utility footer-link {
+  @apply text-gray-300 hover:text-yellow-400 transition-colors;
+}
 
-  /* HERO SECTION */
-  .hero-title {
-    @apply text-4xl md:text-6xl font-bold text-gray-900 mb-6;
-  }
+/* BOUTONS */
+@utility btn-primary {
+  @apply inline-flex items-center px-8 py-3 border border-transparent text-base font-semibold rounded-lg text-gray-900 bg-yellow-500 hover:bg-yellow-400 transition-all duration-200 shadow-lg hover:shadow-xl;
+}
 
-  .hero-subtitle {
-    @apply text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed;
-  }
+@utility btn-secondary {
+  @apply inline-flex items-center px-8 py-3 border border-gray-700 text-base font-semibold rounded-lg text-white bg-transparent hover:bg-gray-800 transition-all duration-200;
+}
 
-  .hero-gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600;
-  }
+@utility btn-link {
+  @apply inline-flex items-center text-yellow-400 hover:text-yellow-300 font-semibold transition-colors;
+}
 
-  /* BADGES TECHNOLOGIE */
-  .tech-blue {
-    @apply px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full;
-  }
+/* CARDS */
+@utility card {
+  @apply bg-gray-800/50 backdrop-blur-sm rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-700/50 hover:border-gray-600/50;
+}
 
-  .tech-green {
-    @apply px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full;
-  }
+/* TITRES */
+@utility section-title {
+  @apply text-3xl md:text-4xl font-bold text-white mb-6;
+}
 
-  .tech-purple {
-    @apply px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full;
-  }
+@utility section-subtitle {
+  @apply text-xl text-gray-400 max-w-2xl mx-auto;
+}
 
-  .tech-orange {
-    @apply px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full;
-  }
+/* HERO */
+@utility hero-section {
+  @apply min-h-screen flex items-center justify-center pt-20;
+}
 
-  .tech-cyan {
-    @apply px-3 py-1 bg-cyan-100 text-cyan-800 text-sm rounded-full;
-  }
+@utility hero-title {
+  @apply text-5xl md:text-7xl font-bold text-white mb-6 leading-tight;
+}
 
-  .tech-pink {
-    @apply px-3 py-1 bg-pink-100 text-pink-800 text-sm rounded-full;
-  }
+@utility hero-subtitle {
+  @apply text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed;
+}
 
-  .tech-gray {
-    @apply px-3 py-1 bg-gray-100 text-gray-800 text-sm rounded-full;
-  }
+@utility hero-gradient-text {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500;
+}
 
-  /* IMAGES DE PROJET (placeholders avec gradients) */
-  .project-image-blue {
-    @apply h-48 bg-gradient-to-br from-blue-400 to-indigo-600;
-  }
+/* BADGES TECH */
+@utility tech-blue {
+  @apply px-3 py-1 bg-blue-500/20 text-blue-300 text-sm rounded-full border border-blue-500/30 backdrop-blur-sm;
+}
 
-  .project-image-green {
-    @apply h-48 bg-gradient-to-br from-green-400 to-teal-600;
-  }
+@utility tech-green {
+  @apply px-3 py-1 bg-emerald-500/20 text-emerald-300 text-sm rounded-full border border-emerald-500/30 backdrop-blur-sm;
+}
 
-  .project-image-purple {
-    @apply h-48 bg-gradient-to-br from-purple-400 to-pink-600;
-  }
+@utility tech-purple {
+  @apply px-3 py-1 bg-purple-500/20 text-purple-300 text-sm rounded-full border border-purple-500/30 backdrop-blur-sm;
+}
 
-  /* ICONES DE COMPÉTENCES */
-  .skill-icon {
-    @apply w-12 h-12 rounded-lg flex items-center justify-center mb-6;
-  }
+@utility tech-orange {
+  @apply px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30 backdrop-blur-sm;
+}
 
-  .skill-icon-blue {
-    @apply w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6;
-  }
+@utility tech-yellow {
+  @apply px-3 py-1 bg-yellow-500/20 text-yellow-300 text-sm rounded-full border border-yellow-500/30 backdrop-blur-sm;
+}
 
-  .skill-icon-green {
-    @apply w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6;
-  }
+@utility tech-gray {
+  @apply px-3 py-1 bg-gray-500/20 text-gray-300 text-sm rounded-full border border-gray-500/30 backdrop-blur-sm;
+}
 
-  .skill-icon-purple {
-    @apply w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6;
-  }
+/* IMAGES PROJET */
+@utility project-image-blue {
+  @apply h-48 bg-gradient-to-br from-blue-600 to-blue-800;
+}
 
-  /* LAYOUT SECTIONS */
-  .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
+@utility project-image-green {
+  @apply h-48 bg-gradient-to-br from-emerald-600 to-emerald-800;
+}
 
-  .grid-cards {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
-  }
+@utility project-image-purple {
+  @apply h-48 bg-gradient-to-br from-purple-600 to-purple-800;
+}
 
-  /* ABOUT SECTION */
-  .about-text {
-    @apply text-lg text-gray-600 mb-6 leading-relaxed;
-  }
+/* ICÔNES COMPÉTENCES */
+@utility skill-icon-blue {
+  @apply w-12 h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center  mb-6 border border-blue-500/30;
+}
 
-  .about-image {
-    @apply aspect-square bg-gradient-to-br from-blue-400 to-indigo-600 rounded-2xl shadow-xl;
-  }
+@utility skill-icon-green {
+  @apply w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center mb-6 border border-emerald-500/30;
+}
 
-  /* ARTICLES */
-  .article-meta {
-    @apply flex items-center text-sm text-gray-500 mb-4;
-  }
+@utility skill-icon-purple {
+  @apply w-12 h-12 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center mb-6 border border-purple-500/30;
+}
 
-  .article-title {
-    @apply text-xl font-semibold text-gray-900 mb-3;
-  }
+/* LAYOUT */
+@utility section-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
 
-  .article-title-link {
-    @apply hover:text-blue-600 transition-colors;
-  }
+@utility grid-cards {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
 
-  .article-excerpt {
-    @apply text-gray-600 mb-4 line-clamp-3;
-  }
+/* ARTICLES */
+@utility article-meta {
+  @apply flex items-center text-sm text-gray-500 mb-4;
+}
+
+@utility article-title {
+  @apply text-xl font-semibold text-white mb-3;
+}
+
+@utility article-title-link {
+  @apply hover:text-yellow-400 transition-colors;
+}
+
+@utility article-excerpt {
+  @apply text-gray-400 mb-4;
+}
+
+/* CONTACT */
+@utility contacts-icon {
+  @apply w-12 h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center mx-auto mb-6 border border-blue-500/30;
 }

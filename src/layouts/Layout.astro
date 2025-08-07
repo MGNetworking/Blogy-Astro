@@ -20,9 +20,9 @@ const { title, description = "Site par défaut" } = Astro.props as Props;
     <title>{title}</title>
     <meta name="description" content={description} />
   </head>
-  <body class="font-sans bg-gray-50 text-gray-900">
+  <body>
     <Navbar />
-    <main class="text-gray-400 body-font bg-gray-900">
+    <main>
       <slot />
     </main>
     <Footer />
