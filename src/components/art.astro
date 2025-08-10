@@ -1,0 +1,70 @@
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { getEntry, render } from "astro:content";
+
+// Au lieu de récupérer depuis l'URL, on récupère depuis les params de route
+// Pour cela, il faut passer le slug en props depuis ArticleView
+const { slug } = Astro.props;
+
+console.log("2. Slug reçu en props:", slug);
+
+let article;
+let Content: AstroComponentFactory | undefined;
+
+if (slug) {
+  console.log("3. Tentative getEntry:", slug);
+  try {
+    // Utilise les collections au lieu d'import dynamique
+    article = await getEntry("articles", slug);
+
+    if (article) {
+      console.log("4. Article trouvé! Titre:", article.data.title);
+
+      // Transforme le markdown en HTML
+      const rendered = await render(article);
+      Content = rendered.Content;
+    } else {
+      console.log("4. Article non trouvé dans la collection");
+    }
+  } catch (error) {
+    console.log("4. ERREUR getEntry:", (error as Error).message);
+  }
+} else {
+  console.log("3. Pas de slug!");
+}
+---
+
+<div class="py-20 bg-gray-800 text-white">
+  <div class="max-w-4xl mx-auto px-4">
+    {
+      slug && article ? (
+        <div>
+          <a href="/ArticlesPage" class="text-blue-400 mb-4 inline-block">
+            ← Retour à la liste
+          </a>
+
+          <h1 class="text-4xl font-bold mb-4">{article.data.title}</h1>
+
+          {article.data.author && (
+            <p class="text-gray-300 mb-2">✍️ Par : {article.data.author}</p>
+          )}
+
+          {article.data.date && (
+            <p class="text-gray-300 mb-4">📅 Date : {article.data.date}</p>
+          )}
+
+          <main class="prose prose-invert prose-lg max-w-none mt-8">
+            {Content && <Content />}
+          </main>
+        </div>
+      ) : (
+        <div class="text-center">
+          <h1 class="text-2xl mb-4">Aucun article sélectionné</h1>
+          <a href="/ArticlesPage" class="text-blue-400">
+            ← Voir la liste des articles
+          </a>
+        </div>
+      )
+    }
+  </div>
+</div>
