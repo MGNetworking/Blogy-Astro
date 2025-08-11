@@ -1,68 +1,63 @@
 ---
-import { getCollection } from 'astro:content';
+import { getGithubArticles, parseMarkdown } from "../services/github.js";
 
-// Cette ligne récupère TOUS vos articles automatiquement
-const articles = await getCollection('articles');
+const mdFiles = await getGithubArticles();
 
-console.log(`Article ${articles.length}`)
+const articles = await Promise.all(
+  mdFiles.map(async (file) => {
+    const contentResponse = await fetch(file.download_url);
+    const rawContent = await contentResponse.text();
+    const { frontmatter } = parseMarkdown(rawContent);
+
+    return {
+      id: file.name.replace(".md", ""),
+      data: frontmatter,
+    };
+  })
+);
 ---
 
 <html>
   <head>
-    <title>Liste des articles</title>
+    <title>Mes articles</title>
   </head>
   <body class="py-20 bg-gray-800 text-white">
     <div class="max-w-4xl mx-auto px-4">
-      <h1 class="text-4xl font-bold mb-8">Tous mes articles ({articles.length})</h1>
+      <h1 class="text-4xl font-bold mb-8">
+        Mes articles ({articles.length})
+      </h1>
 
       <div class="space-y-6">
-        {articles.map((article) => (
-          <article class="bg-gray-700 p-6 rounded-lg">
-            <!-- Titre cliquable -->
-            <h2 class="text-2xl font-bold mb-2">
-              <a 
+        {
+          articles.map((article) => (
+            <article class="bg-gray-700 p-6 rounded-lg">
+              <h2 class="text-2xl font-bold mb-2">
+                <a
+                  href={`/article/${article.id}`}
+                  class="text-blue-400 hover:text-blue-300"
+                >
+                  {article.data.title}
+                </a>
+              </h2>
+
+              <div class="text-gray-300 mb-4">
+                {article.data.author && <p>✍️ Par : {article.data.author}</p>}
+                {article.data.date && <p>📅 Date : {article.data.date}</p>}
+              </div>
+
+              {article.data.description && (
+                <p class="text-gray-200 mb-4">{article.data.description}</p>
+              )}
+
+              <a
                 href={`/article/${article.id}`}
-                class="text-blue-400 hover:text-blue-300"
+                class="inline-block bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white"
               >
-                {article.data?.title || article.id}
+                Lire l'article →
               </a>
-            </h2>
-
-            <!-- Métadonnées -->
-            <div class="text-gray-300 mb-4 space-y-1">
-              {article.data?.author && (
-                <p>✍️ Par : <span class="font-semibold">{article.data.author}</span></p>
-              )}
-              
-              {article.data?.date && (
-                <p>📅 Date : {article.data.date}</p>
-              )}
-              
-              {article.data?.tags && article.data.tags.length > 0 && (
-                <p>🏷️ Tags : 
-                  {article.data.tags.map((tag: string, index: number) => (
-                    <span key={tag} class="bg-blue-600 px-2 py-1 rounded text-sm ml-1">
-                      {tag}
-                    </span>
-                  ))}
-                </p>
-              )}
-            </div>
-
-            <!-- Description -->
-            {article.data?.description && (
-              <p class="text-gray-200 mb-4">{article.data.description}</p>
-            )}
-
-            <!-- Lien "Lire la suite" -->
-            <a 
-              href={`/article/${article.id}`}
-              class="inline-block bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white font-medium"
-            >
-              Lire l'article →
-            </a>
-          </article>
-        ))}
+            </article>
+          ))
+        }
       </div>
     </div>
   </body>

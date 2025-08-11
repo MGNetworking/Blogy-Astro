@@ -1,33 +1,25 @@
 ---
-import type { AstroComponentFactory } from "astro/runtime/server/index.js";
-import { getEntry, render } from "astro:content";
+import { getGithubArticle, parseMarkdown } from "../services/github.js";
 
-// Au lieu de récupérer depuis l'URL, on récupère depuis les params de route
-// Pour cela, il faut passer le slug en props depuis ArticleView
 const { slug } = Astro.props;
 
 console.log("2. Slug reçu en props:", slug);
 
 let article;
-let Content: AstroComponentFactory | undefined;
+let htmlContent = "";
 
 if (slug) {
-  console.log("3. Tentative getEntry:", slug);
+  console.log("3. Tentative récupération GitHub:", slug);
   try {
-    // Utilise les collections au lieu d'import dynamique
-    article = await getEntry("articles", slug);
+    const rawContent = await getGithubArticle(slug);
+    const { frontmatter, content } = parseMarkdown(rawContent);
 
-    if (article) {
-      console.log("4. Article trouvé! Titre:", article.data.title);
+    article = { data: frontmatter };
+    htmlContent = content;
 
-      // Transforme le markdown en HTML
-      const rendered = await render(article);
-      Content = rendered.Content;
-    } else {
-      console.log("4. Article non trouvé dans la collection");
-    }
+    console.log("4. Article trouvé! Titre:", article.data.title);
   } catch (error) {
-    console.log("4. ERREUR getEntry:", (error as Error).message);
+    console.log("4. ERREUR GitHub:", error.message);
   }
 } else {
   console.log("3. Pas de slug!");
@@ -53,8 +45,8 @@ if (slug) {
             <p class="text-gray-300 mb-4">📅 Date : {article.data.date}</p>
           )}
 
-          <main class="prose prose-invert prose-lg max-w-none mt-8">
-            {Content && <Content />}
+          <main class="prose  max-w-none mt-8">
+            <div set:html={htmlContent} />
           </main>
         </div>
       ) : (

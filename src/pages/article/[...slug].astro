@@ -1,17 +1,13 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import ArtComponent from "../../components/art.astro";
+import { getGithubArticles } from "../../services/github.js";
 
-// IMPORTANT : "export" au début !
 export async function getStaticPaths() {
-  const articles = await getCollection("articles");
+  const mdFiles = await getGithubArticles();
 
-  // Ce log visible dans le TERMINAL pendant la compilation et dev uniquement
-  console.log("Compilation:", articles.length, "articles trouvés");
-
-  return articles.map((article) => ({
-    params: { slug: article.id },
+  return mdFiles.map((file) => ({
+    params: { slug: file.name.replace(".md", "") },
   }));
 }
 
