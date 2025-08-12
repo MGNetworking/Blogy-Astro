@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           # Quelle branche télécharger (par défaut = branche qui a déclenché l'action)
-          ref: 'main'
+          ref: 'master'
           # Combien de commits télécharger (0 = tout l'historique, 1 = seulement le dernier)
           fetch-depth: 1
           # Télécharger aussi les submodules Git si tu en as
@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           # Version exacte de Node.js à installer
-          node-version: '22'
+          node-version-file: '.nvmrc'
           # Type de cache pour les dépendances (npm, yarn, pnpm)
           cache: 'npm'
           # Chemin vers le fichier de lock (par défaut = package-lock.json à la racine)
