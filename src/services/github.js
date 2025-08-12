@@ -4,7 +4,7 @@ const GITHUB_USER = "MGNetworking";
 const GITHUB_REPO = "MD-Article";
 
 const headers = {
-  Authorization: `token ${import.meta.env.GITHUB_TOKEN}`,
+  Authorization: `token ${import.meta.env.TOKEN_GITHUB}`,
 };
 
 // Configuration de marked pour GitHub Flavored Markdown
