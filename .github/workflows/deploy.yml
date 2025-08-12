@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           # Version exacte de Node.js à installer
-          node-version-file: '.nvmrc'
+          node-version: '22'
           # Type de cache pour les dépendances (npm, yarn, pnpm)
           cache: 'npm'
           # Chemin vers le fichier de lock (par défaut = package-lock.json à la racine)
