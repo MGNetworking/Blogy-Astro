@@ -4,10 +4,14 @@ import ArtComponent from "../../components/art.astro";
 import { getGithubArticles } from "../../services/github.js";
 
 export async function getStaticPaths() {
+  // Récupération SEULEMENT de l'index JSON (léger)
   const mdFiles = await getGithubArticles();
 
+  // Retourne JUSTE les slugs pour créer les pages
   return mdFiles.map((file) => ({
-    params: { slug: file.name.replace(".md", "") },
+    params: {
+      slug: file.metadata.name.replace(".md", ""),
+    },
   }));
 }
 

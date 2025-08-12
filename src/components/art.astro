@@ -1,23 +1,21 @@
 ---
-import { getGithubArticle, parseMarkdown } from "../services/github.js";
+import { getGithubArticle } from "../services/github.js";
+import { marked } from "marked";
 
 const { slug } = Astro.props;
 
 console.log("2. Slug reçu en props:", slug);
 
-let article;
-let htmlContent = "";
+let htmlContent;
 
 if (slug) {
   console.log("3. Tentative récupération GitHub:", slug);
   try {
     const rawContent = await getGithubArticle(slug);
-    const { frontmatter, content } = parseMarkdown(rawContent);
 
-    article = { data: frontmatter };
-    htmlContent = content;
+    htmlContent = marked(rawContent);
 
-    console.log("4. Article trouvé! Titre:", article.data.title);
+    console.log("4. le contenu", htmlContent);
   } catch (error) {
     console.log("4. ERREUR GitHub:", error.message);
   }
@@ -29,23 +27,13 @@ if (slug) {
 <div class="py-20 bg-gray-800 text-white">
   <div class="max-w-4xl mx-auto px-4">
     {
-      slug && article ? (
+      slug && htmlContent ? (
         <div>
           <a href="/ArticlesPage" class="text-blue-400 mb-4 inline-block">
             ← Retour à la liste
           </a>
 
-          <h1 class="text-4xl font-bold mb-4">{article.data.title}</h1>
-
-          {article.data.author && (
-            <p class="text-gray-300 mb-2">✍️ Par : {article.data.author}</p>
-          )}
-
-          {article.data.date && (
-            <p class="text-gray-300 mb-4">📅 Date : {article.data.date}</p>
-          )}
-
-          <main class="prose  max-w-none mt-8">
+          <main class="article-content prose max-w-none mt-8">
             <div set:html={htmlContent} />
           </main>
         </div>

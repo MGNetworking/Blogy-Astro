@@ -1,20 +1,16 @@
 ---
-import { getGithubArticles, parseMarkdown } from "../services/github.js";
+import { getGithubArticles } from "../services/github.js";
 
 const mdFiles = await getGithubArticles();
 
-const articles = await Promise.all(
-  mdFiles.map(async (file) => {
-    const contentResponse = await fetch(file.download_url);
-    const rawContent = await contentResponse.text();
-    const { frontmatter } = parseMarkdown(rawContent);
-
-    return {
-      id: file.name.replace(".md", ""),
-      data: frontmatter,
-    };
-  })
-);
+const articles = mdFiles.map((file) => ({
+  id: file.metadata.name.replace(".md", ""),
+  title: file.metadata.title,
+  author: file.metadata.author,
+  date: file.metadata.date,
+  description: file.metadata.description,
+  tags: file.metadata.tags,
+}));
 ---
 
 <html>
@@ -36,17 +32,17 @@ const articles = await Promise.all(
                   href={`/article/${article.id}`}
                   class="text-blue-400 hover:text-blue-300"
                 >
-                  {article.data.title}
+                  {article.title}
                 </a>
               </h2>
 
               <div class="text-gray-300 mb-4">
-                {article.data.author && <p>✍️ Par : {article.data.author}</p>}
-                {article.data.date && <p>📅 Date : {article.data.date}</p>}
+                {article.author && <p>✍️ Par : {article.author}</p>}
+                {article.date && <p>📅 Date : {article.date}</p>}
               </div>
 
-              {article.data.description && (
-                <p class="text-gray-200 mb-4">{article.data.description}</p>
+              {article.description && (
+                <p class="text-gray-200 mb-4">{article.description}</p>
               )}
 
               <a

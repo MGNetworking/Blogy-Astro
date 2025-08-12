@@ -18,28 +18,42 @@ marked.setOptions({
 });
 
 export async function getGithubArticles() {
+  // Récupération SEULEMENT de l'index JSON (léger)
   const response = await fetch(
-    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents`,
+    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/index.json`,
     { headers }
   );
 
-  const files = await response.json();
-
-  if (!Array.isArray(files)) {
-    console.error("Erreur GitHub:", files);
-    throw new Error(`Erreur GitHub: ${files.message || "Réponse invalide"}`);
+  if (!response.ok) {
+    throw new Error(
+      `GitHub API Error: ${response.status} ${response.statusText}`
+    );
   }
 
-  const mdFiles = files.filter((file) => file.name.endsWith(".md"));
+  const fileData = await response.json();
 
-  console.log("Articles trouvés:", mdFiles.length);
+  // Décoder le contenu Base64 du fichier
+  const jsonContent = atob(fileData.content);
+  const articlesIndex = JSON.parse(jsonContent);
 
-  return mdFiles;
+  console.log("Articles trouvés dans l'index:", articlesIndex.articles.length);
+
+  // Retourner les articles avec métadonnées
+  return articlesIndex.articles.map((article) => ({
+    metadata: {
+      name: article.filename,
+      title: article.title,
+      author: article.author,
+      date: article.date,
+      description: article.description,
+      tags: article.tags,
+    },
+  }));
 }
 
 export async function getGithubArticle(slug) {
   const fileResponse = await fetch(
-    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${slug}.md`,
+    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/articles/${slug}.md`,
     { headers }
   );
 
@@ -52,31 +66,4 @@ export async function getGithubArticle(slug) {
   const rawContent = await contentResponse.text();
 
   return rawContent;
-}
-
-export function parseMarkdown(rawContent) {
-  const frontmatterMatch = rawContent.match(
-    /^---\n([\s\S]*?)\n---\n([\s\S]*)$/
-  );
-
-  if (!frontmatterMatch) {
-    return { frontmatter: {}, content: marked(rawContent) };
-  }
-
-  const frontmatterText = frontmatterMatch[1];
-  const markdownContent = frontmatterMatch[2];
-
-  // Parse frontmatter
-  const frontmatter = {};
-  frontmatterText.split("\n").forEach((line) => {
-    const [key, ...valueParts] = line.split(":");
-    if (key && valueParts.length) {
-      frontmatter[key.trim()] = valueParts.join(":").trim().replace(/"/g, "");
-    }
-  });
-
-  // MARKED gère TOUT le Markdown !
-  const htmlContent = marked(markdownContent);
-
-  return { frontmatter, content: htmlContent };
 }
