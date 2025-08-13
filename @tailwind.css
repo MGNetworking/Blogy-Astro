@@ -1,0 +1,4 @@
+@import "tailwindcss";
+
+/* Import du fichier de styles personnalisés */
+@import "./src/styles/global.css";
