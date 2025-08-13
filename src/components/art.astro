@@ -4,20 +4,18 @@ import { marked } from "marked";
 
 const { slug } = Astro.props;
 
-console.log("2. Slug reçu en props:", slug);
-
 let htmlContent;
 
 if (slug) {
-  console.log("3. Tentative récupération GitHub:", slug);
+  console.log("1. Tentative récupération GitHub:", slug);
   try {
     const rawContent = await getGithubArticle(slug);
 
     htmlContent = marked(rawContent);
 
-    console.log("4. le contenu", htmlContent);
+    //console.log("2. le contenu", htmlContent);
   } catch (error) {
-    console.log("4. ERREUR GitHub:", error.message);
+    console.log("2. ERREUR GitHub:", error.message);
   }
 } else {
   console.log("3. Pas de slug!");
@@ -29,7 +27,10 @@ if (slug) {
     {
       slug && htmlContent ? (
         <div>
-          <a href="/ArticlesPage" class="text-blue-400 mb-4 inline-block">
+          <a
+            href="/Blogy-Astro/ArticlesPage"
+            class="text-blue-400 mb-4 inline-block"
+          >
             ← Retour à la liste
           </a>
 
@@ -40,7 +41,7 @@ if (slug) {
       ) : (
         <div class="text-center">
           <h1 class="text-2xl mb-4">Aucun article sélectionné</h1>
-          <a href="/ArticlesPage" class="text-blue-400">
+          <a href="/Blogy-Astro/ArticlesPage" class="text-blue-400">
             ← Voir la liste des articles
           </a>
         </div>
