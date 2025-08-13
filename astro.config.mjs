@@ -5,7 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   // Configuration de base
   site: "https://mgnetworking.github.io/Blogy-Astro", // Remplace par ton URL
-  base: "/", // Base path si nécessaire
+  base: "/", // Base path
 
   // Configuration Vite pour Tailwind CSS 4
   vite: {
