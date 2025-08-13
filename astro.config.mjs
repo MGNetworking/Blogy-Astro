@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   // Configuration de base
-  // site: "https://ton-site.com", // Remplace par ton URL
+  site: "https://mgnetworking.github.io/Blogy-Astro", // Remplace par ton URL
   base: "/", // Base path si nécessaire
 
   // Configuration Vite pour Tailwind CSS 4
