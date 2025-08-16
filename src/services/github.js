@@ -8,17 +8,19 @@ const headers = {
 };
 
 // Configuration de marked pour GitHub Flavored Markdown
+// stockage interne de la config
 marked.setOptions({
-  gfm: true, // GitHub Flavored Markdown
-  breaks: true, // \n devient <br>
-  pedantic: false, // Pas trop strict
-  sanitize: false, // Autorise HTML
-  smartLists: true, // Listes intelligentes
-  smartypants: false, // Pas de conversion de quotes
+  gfm: true, // Active GitHub Flavored Markdown
+  breaks: true, // Les retours à la ligne simples deviennent des <br>
+  pedantic: false, // Mode moins strict (plus permissif)
+  sanitize: false, // Autorise le HTML dans le markdown
+  smartLists: true, // Améliore le rendu des listes
+  smartypants: false, // Désactive la conversion automatique des guillemets
 });
 
+/* Récupération des meta données en JSON (léger) */
 export async function getGithubArticles() {
-  // Récupération SEULEMENT de l'index JSON (léger)
+  // Récupération SEULEMENT de l'index JSON
   const response = await fetch(
     `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/index.json`,
     { headers }
@@ -32,21 +34,25 @@ export async function getGithubArticles() {
 
   const fileData = await response.json();
 
-  // Décoder le contenu Base64 du fichier
-  const jsonContent = atob(fileData.content);
-  const articlesIndex = JSON.parse(jsonContent);
+  // Décodage des meta données au format UTF-8
+  const jsonContent = new TextDecoder("utf-8").decode(
+    Uint8Array.from(atob(fileData.content), (c) => c.charCodeAt(0))
+  );
 
-  console.log("Articles trouvés dans l'index:", articlesIndex.articles.length);
+  const articlesIndex = JSON.parse(jsonContent);
+  console.log("Nombre d'articles trouvés :", articlesIndex.articles.length);
 
   // Retourner les articles avec métadonnées
   return articlesIndex.articles.map((article) => ({
     metadata: {
-      name: article.filename,
       title: article.title,
-      author: article.author,
       date: article.date,
-      description: article.description,
+      time: article.time,
+      author: article.author,
       tags: article.tags,
+      description: article.description,
+      filename: article.filename,
+      img: article.img,
     },
   }));
 }
