@@ -35,7 +35,7 @@ body {
 }
 
 @utility btn-link {
-  @apply inline-flex items-center text-yellow-400 hover:text-yellow-300 font-semibold transition-colors;
+  @apply inline-flex items-center text-yellow-500 hover:text-yellow-200 font-semibold transition-colors;
 }
 
 /* CARDS */
@@ -138,11 +138,11 @@ body {
 }
 
 @utility article-title {
-  @apply text-xl font-semibold text-white mb-3;
+  @apply text-xl font-semibold mb-3;
 }
 
 @utility article-title-link {
-  @apply hover:text-yellow-400 transition-colors;
+  @apply text-white hover:text-yellow-400 transition-colors;
 }
 
 @utility article-desc {
@@ -178,13 +178,14 @@ body {
   transform: translateX(10px); /* Déplace la flèche vers la droite */
 }
 
-.read-more-link {
-  @apply hover:text-yellow-400 transition-colors;
-}
-
 /* CONTACT */
 @utility contacts-icon {
   @apply w-12 h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center mx-auto mb-6 border border-blue-500/30;
+}
+
+/* Compteur d'articles filtrés */
+@utility compter-filter {
+  @apply text-sm text-gray-400 whitespace-nowrap;
 }
 
 /* CSS COMPLET POUR CONTENU MARKDOWN → HTML */
