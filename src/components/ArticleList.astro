@@ -1,60 +1,135 @@
 ---
 import { getGithubArticles } from "../services/github.js";
+import type { GitHubFile, Article } from "../type/github.ts";
 
+// Récupérer et traiter les articles
 const mdFiles = await getGithubArticles();
-
-const articles = mdFiles.map((file) => ({
-  id: file.metadata.name.replace(".md", ""),
+const allArticles = mdFiles.map((file: GitHubFile) => ({
+  id: file.metadata.filename.replace(".md", ""),
   title: file.metadata.title,
-  author: file.metadata.author,
   date: file.metadata.date,
-  description: file.metadata.description,
+  time: file.metadata.time,
+  author: file.metadata.author,
   tags: file.metadata.tags,
+  description: file.metadata.description,
+  img: file.metadata.img,
 }));
+
+// Fonction pour les classes CSS des tags
+const getTagClass = (tag: string) => {
+  const tagClasses: Record<string, string> = {
+    performance: "tech-blue",
+    astro: "tech-green",
+    react: "tech-green",
+    vue: "tech-green",
+    angular: "tech-green",
+    web: "tech-green",
+    markdown: "tech-green",
+    typescript: "tech-yellow",
+    javascript: "tech-yellow",
+    css: "tech-pink",
+    html: "tech-red",
+  };
+
+  return tagClasses[tag.toLowerCase()] || "tech-gray";
+};
 ---
 
 <html>
   <head>
     <title>Mes articles</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body class="py-20 bg-gray-800 text-white">
     <div class="max-w-4xl mx-auto px-4">
       <h1 class="text-4xl font-bold mb-8">
-        Mes articles ({articles.length})
+        Mes articles ({allArticles.length})
       </h1>
 
+      <!-- LISTE DES ARTICLES -->
       <div class="space-y-6">
         {
-          articles.map((article) => (
-            <article class="bg-gray-700 p-6 rounded-lg">
-              <h2 class="text-2xl font-bold mb-2">
+          allArticles.map((article: Article) => (
+            <article
+              class="card-article cursor-pointer relative"
+              onclick={`window.location.href='/Blogy-Astro/article/${article.id}'`}
+            >
+              <div class="p-6">
+                <div class="article-meta">
+                  {article.date && <time>{article.date}</time>}
+                  {article.date && article.time && <span class="mx-2">•</span>}
+                  {article.time && <span>{article.time}</span>}
+                </div>
+
+                <h3 class="article-title">
+                  <a
+                    href={`/Blogy-Astro/article/${article.id}`}
+                    class="article-title-link"
+                  >
+                    {article.title}
+                  </a>
+                </h3>
+
+                {article.description && (
+                  <p class="article-desc text-gray-200 mb-4">
+                    {article.description}
+                  </p>
+                )}
+
                 <a
                   href={`/Blogy-Astro/article/${article.id}`}
-                  class="text-blue-400 hover:text-blue-300"
+                  class="read-more-link mt-3 inline-flex items-center mb-6"
                 >
-                  {article.title}
+                  <span>En savoir plus</span>
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    class="w-4 h-4 ml-2 arrow-icon"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
                 </a>
-              </h2>
 
-              <div class="text-gray-300 mb-4">
-                {article.author && <p>✍️ Par : {article.author}</p>}
-                {article.date && <p>📅 Date : {article.date}</p>}
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {article.tags.map((tag) => (
+                    <span class={getTagClass(tag)}>{tag}</span>
+                  ))}
+                </div>
+
+                <div class="article-image">
+                  {article.img ? (
+                    <img
+                      src={article.img}
+                      alt={article.title}
+                      class="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div class="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                      <svg
+                        class="w-8 h-8 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </div>
               </div>
-
-              {article.description && (
-                <p class="text-gray-200 mb-4">{article.description}</p>
-              )}
-
-              <a
-                href={`/Blogy-Astro/article/${article.id}`}
-                class="inline-block bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white"
-              >
-                Lire l'article →
-              </a>
             </article>
           ))
         }
       </div>
     </div>
+    )}
   </body>
 </html>
