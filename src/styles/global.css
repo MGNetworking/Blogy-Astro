@@ -133,6 +133,9 @@ body {
 @utility article-meta {
   @apply flex items-center text-sm text-gray-500 mb-4;
 }
+@utility article-meta {
+  @apply flex items-center text-sm mb-4 text-gray-400;
+}
 
 @utility article-title {
   @apply text-xl font-semibold text-white mb-3;
@@ -142,8 +145,41 @@ body {
   @apply hover:text-yellow-400 transition-colors;
 }
 
-@utility article-excerpt {
-  @apply text-gray-400 mb-4;
+@utility article-desc {
+  @apply text-gray-300 mb-4;
+}
+
+@utility card-article {
+  @apply relative rounded-xl mb-6;
+}
+
+.card-article .p-6 {
+  @apply pr-10 sm:pr-70; /* Marge à droite pour éviter l'image */
+} /* Alternance des couleurs pour les cards articles*/
+
+.article-image {
+  @apply hidden sm:block absolute top-4 right-4 w-60 h-36 rounded-lg overflow-hidden;
+}
+
+.card-article:nth-child(odd) {
+  @apply bg-gray-800/60 backdrop-blur-sm rounded-xl mb-6;
+}
+
+.card-article:nth-child(even) {
+  @apply bg-gray-600/60 backdrop-blur-sm rounded-xl mb-6;
+}
+
+/* fleche  */
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.cursor-pointer:hover .arrow-icon {
+  transform: translateX(10px); /* Déplace la flèche vers la droite */
+}
+
+.read-more-link {
+  @apply hover:text-yellow-400 transition-colors;
 }
 
 /* CONTACT */
