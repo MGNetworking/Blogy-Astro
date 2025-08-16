@@ -1,6 +1,8 @@
 ---
 import { getGithubArticles } from "../services/github.js";
 import type { GitHubFile, Article } from "../type/github.ts";
+import { getTagClass } from "../utils/tagService.js";
+import TagFilter from "./TagFilter.astro";
 
 // Récupérer et traiter les articles
 const mdFiles = await getGithubArticles();
@@ -14,25 +16,6 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
   description: file.metadata.description,
   img: file.metadata.img,
 }));
-
-// Fonction pour les classes CSS des tags
-const getTagClass = (tag: string) => {
-  const tagClasses: Record<string, string> = {
-    performance: "tech-blue",
-    astro: "tech-green",
-    react: "tech-green",
-    vue: "tech-green",
-    angular: "tech-green",
-    web: "tech-green",
-    markdown: "tech-green",
-    typescript: "tech-yellow",
-    javascript: "tech-yellow",
-    css: "tech-pink",
-    html: "tech-red",
-  };
-
-  return tagClasses[tag.toLowerCase()] || "tech-gray";
-};
 ---
 
 <html>
@@ -43,25 +26,34 @@ const getTagClass = (tag: string) => {
   </head>
   <body class="py-20 bg-gray-800 text-white">
     <div class="max-w-4xl mx-auto px-4">
+
+      <!-- TITRE PRINCIPAL -->
       <h1 class="text-4xl font-bold mb-8">
         Mes articles ({allArticles.length})
       </h1>
 
+      <!-- COMPOSANT DE FILTRAGE PAR TAGS -->
+      <TagFilter articles={allArticles} />
+
       <!-- LISTE DES ARTICLES -->
-      <div class="space-y-6">
+      <div class="space-y-6" id="articles-container">
         {
           allArticles.map((article: Article) => (
             <article
               class="card-article cursor-pointer relative"
               onclick={`window.location.href='/Blogy-Astro/article/${article.id}'`}
+              data-tags={JSON.stringify(article.tags)}
             >
               <div class="p-6">
+
+                <!-- Métadonnées de l'article -->
                 <div class="article-meta">
                   {article.date && <time>{article.date}</time>}
                   {article.date && article.time && <span class="mx-2">•</span>}
                   {article.time && <span>{article.time}</span>}
                 </div>
 
+                <!-- Titre de l'article -->
                 <h3 class="article-title">
                   <a
                     href={`/Blogy-Astro/article/${article.id}`}
@@ -71,16 +63,19 @@ const getTagClass = (tag: string) => {
                   </a>
                 </h3>
 
+                <!-- Description -->
                 {article.description && (
                   <p class="article-desc text-gray-200 mb-4">
                     {article.description}
                   </p>
                 )}
 
+                <!-- Bouton "En savoir plus" -->
                 <a
                   href={`/Blogy-Astro/article/${article.id}`}
-                  class="read-more-link mt-3 inline-flex items-center mb-6"
+                  class="btn-link mt-3 inline-flex items-center mb-6"
                 >
+
                   <span>En savoir plus</span>
                   <svg
                     fill="none"
@@ -130,6 +125,6 @@ const getTagClass = (tag: string) => {
         }
       </div>
     </div>
-    )}
+
   </body>
 </html>

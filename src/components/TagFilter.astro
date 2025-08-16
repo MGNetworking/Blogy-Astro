@@ -1,0 +1,179 @@
+---
+import { extractUniqueTagsFromArticles } from "../utils/tagService.js";
+import type { Article } from "../type/github.ts";
+
+// ===== PROPS REÇUES DU PARENT =====
+export interface Props {
+  articles: Article[];
+}
+
+const { articles } = Astro.props;
+
+// ===== EXTRACTION DES TAGS UNIQUES =====
+const uniqueTags = extractUniqueTagsFromArticles(articles);
+console.log(`🏷️ Tags uniques trouvés: ${uniqueTags.length}`, uniqueTags);
+---
+
+<!-- COMPOSANT DE FILTRAGE PAR TAGS -->
+<div class="mb-8 bg-gray-900 rounded-lg p-6">
+  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+    <!-- Label -->
+    <label for="tagFilter" class="text-gray-300 font-medium whitespace-nowrap">
+      🏷️ Filtrer par tag :
+    </label>
+
+    <!-- Combobox de sélection -->
+    <div class="relative flex-1 min-w-0">
+      <select
+        id="tagFilter"
+        class="w-full bg-gray-800 text-white border border-gray-600 rounded-lg px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors appearance-none"
+      >
+        <option value="all" selected
+          >📄 Tous les articles ({articles.length})</option
+        >
+        {
+          uniqueTags.map((tag) => (
+            <option value={tag}>
+              🔖 {tag.charAt(0).toUpperCase() + tag.slice(1)}
+            </option>
+          ))
+        }
+      </select>
+
+      <!-- Icône de dropdown personnalisée -->
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+      >
+        <svg
+          class="w-5 h-5 text-gray-400"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Compteur d'articles filtrés -->
+    <div id="articleCount" class="compter-filter">
+      <span id="filteredCount">{articles.length}</span> article(s) affiché(s)
+    </div>
+  </div>
+
+  <!-- Indicateur de tag actif -->
+  <div id="activeTagIndicator" class="mt-4 hidden">
+    <div class="flex items-center gap-2">
+      <span class="text-sm text-gray-400">Filtrage actif :</span>
+      <span
+        id="activeTagName"
+        class="px-3 py-1 bg-blue-600 text-white text-sm rounded-full"></span>
+      <button
+        id="clearFilter"
+        class="text-xs text-gray-400 hover:text-white transition-colors underline"
+      >
+        Effacer le filtre
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- JAVASCRIPT POUR LE FILTRAGE EN TEMPS RÉEL -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("🚀 TagFilter: Script de filtrage chargé");
+
+    // récupération de tout les Identifiant
+    const tagFilter = document.getElementById("tagFilter");
+    const articlesContainer = document.getElementById("articles-container");
+    const filteredCount = document.getElementById("filteredCount");
+    const activeTagIndicator = document.getElementById("activeTagIndicator");
+    const activeTagName = document.getElementById("activeTagName");
+    const clearFilter = document.getElementById("clearFilter");
+
+    if (!tagFilter || !articlesContainer) {
+      console.error("❌ TagFilter: Éléments requis non trouvés");
+      return;
+    }
+
+    // Récupérer tous les articles
+    const allArticles = Array.from(
+      articlesContainer.querySelectorAll("[data-tags]")
+    );
+    console.log(`📄 TagFilter: ${allArticles.length} articles trouvés`);
+
+    // Event listener pour la selection du tag
+    tagFilter.addEventListener("change", function () {
+      const selectedTag = this.value;
+      filterArticles(selectedTag);
+    });
+
+    // Event listener pour effacer le filtre
+    if (clearFilter) {
+      clearFilter.addEventListener("click", function () {
+        tagFilter.value = "all";
+        filterArticles("all");
+      });
+    }
+
+    // Animation CSS pour l'apparition
+    const style = document.createElement("style");
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    console.log("TagFilter: Filtrage initialisé avec succès");
+
+    // Fonction de filtrage
+    function filterArticles(selectedTag) {
+      console.log(`🔍 TagFilter: Filtrage par "${selectedTag}"`);
+
+      let visibleCount = 0;
+
+      // récupérer tout les tag de tout les articles
+      allArticles.forEach((article) => {
+        const articleTags = JSON.parse(
+          article.getAttribute("data-tags") || "[]"
+        );
+
+        // Détermine si l'article doit être affiché ou masqué.
+        // selectedTag === all => true ou vérification : Est-ce que l'article contient ce tag ?
+        const shouldShow =
+          selectedTag === "all" ||
+          articleTags.some(
+            (tag) => tag.toLowerCase() === selectedTag.toLowerCase()
+          );
+
+        if (shouldShow) {
+          article.style.display = "block";
+          article.style.animation = "fadeIn 0.3s ease-in-out";
+          visibleCount++;
+        } else {
+          article.style.display = "none";
+        }
+      });
+
+      // Mettre à jour le compteur
+      filteredCount.textContent = visibleCount;
+
+      // Afficher/masquer l'indicateur de tag actif
+      if (selectedTag !== "all") {
+        activeTagName.textContent =
+          selectedTag.charAt(0).toUpperCase() + selectedTag.slice(1);
+        activeTagIndicator.classList.remove("hidden");
+      } else {
+        activeTagIndicator.classList.add("hidden");
+      }
+
+      console.log(`✅ TagFilter: ${visibleCount} articles affichés`);
+    }
+  });
+</script>
