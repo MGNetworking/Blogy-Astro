@@ -1,6 +1,7 @@
 ---
 import { getGithubArticle } from "../services/github.js";
 import { marked } from "marked";
+import { gfmHeadingId } from "marked-gfm-heading-id";
 
 const { slug } = Astro.props;
 
@@ -10,7 +11,7 @@ if (slug) {
   console.log("1. Tentative récupération GitHub:", slug);
   try {
     const rawContent = await getGithubArticle(slug);
-
+    marked.use(gfmHeadingId());
     htmlContent = marked(rawContent);
 
     //console.log("2. le contenu", htmlContent);
