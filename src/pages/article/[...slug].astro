@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import ArtComponent from "../../components/art.astro";
+import ArtComponent from "../../components/article.astro";
 import { getGithubArticles } from "../../services/github.js";
 
 export async function getStaticPaths() {
@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   const mdFiles = await getGithubArticles();
 
   // Retourne JUSTE les slugs pour créer les pages
-  return mdFiles.map((file) => ({
+  return mdFiles.map((file: any) => ({
     params: {
       slug: file.metadata.filename.replace(".md", ""),
     },
