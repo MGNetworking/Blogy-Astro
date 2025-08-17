@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   // Configuration de base
+  output: "static",
   site: "https://mgnetworking.github.io/Blogy-Astro", // Remplace par ton URL
   base: "/Blogy-Astro", // Base path
 
