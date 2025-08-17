@@ -7,7 +7,7 @@ import TagFilter from "./TagFilter.astro";
 // Récupérer et traiter les articles
 const mdFiles = await getGithubArticles();
 const allArticles = mdFiles.map((file: GitHubFile) => ({
-  id: file.metadata.filename.replace(".md", ""),
+  id: file.metadata.filename,
   title: file.metadata.title,
   date: file.metadata.date,
   time: file.metadata.time,
@@ -16,6 +16,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
   description: file.metadata.description,
   img: file.metadata.img,
 }));
+
 ---
 
 <html>
@@ -41,7 +42,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
           allArticles.map((article: Article) => (
             <article
               class="card-article cursor-pointer relative"
-              onclick={`window.location.href='/Blogy-Astro/articlesPage/${article.id}'`}
+              onclick={`window.location.href='/Blogy-Astro/article/${article.id}'`}
               data-tags={JSON.stringify(article.tags)}
             >
               <div class="p-6">
@@ -56,7 +57,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
                 <!-- Titre de l'article -->
                 <h3 class="article-title">
                   <a
-                    href={`/Blogy-Astro/articlesPage/${article.id}`}
+                    href={`/Blogy-Astro/article/${article.id}`}
                     class="article-title-link"
                   >
                     {article.title}
