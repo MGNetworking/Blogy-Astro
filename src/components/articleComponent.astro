@@ -16,7 +16,7 @@ if (slug) {
 
     //console.log("2. le contenu", htmlContent);
   } catch (error) {
-    console.log("2. ERREUR GitHub:", error.message);
+    console.log("2. ERREUR GitHub:", (error as Error).message);
   }
 } else {
   console.log("3. Pas de slug!");
