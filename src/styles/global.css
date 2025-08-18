@@ -477,40 +477,13 @@ body {
   }
 
   /* === JAVA SPÉCIFIQUE === */
-  .language-java .token.keyword {
-    color: #ff7b72; /* Rouge GitHub exact */
-  }
-
-  .language-java .token.class-name {
-    color: #ffa657; /* Orange GitHub exact */
-  }
 
   .language-java .token.annotation {
-    color: #d2a8ff; /* Violet GitHub exact */
-  }
-
-  .language-java .token.string {
-    color: #a5d6ff; /* Bleu clair GitHub exact */
-  }
-
-  .language-java .token.function {
-    color: #d2a8ff; /* Violet GitHub exact */
-  }
-
-  .language-java .token.number {
-    color: #79c0ff; /* Bleu GitHub exact */
-  }
-
-  .language-java .token.boolean {
-    color: #79c0ff; /* Bleu GitHub exact */
-  }
-
-  .language-java .token.null {
-    color: #ff7b72; /* Rouge GitHub exact */
+    color: #79c0ff; /* Violet GitHub exact */
   }
 
   .language-java .token.comment {
-    color: #3dcf38;
+    color: #7ee787;
   }
 
   /* === YAML SPÉCIFIQUE === */

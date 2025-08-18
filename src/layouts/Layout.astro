@@ -1,7 +1,6 @@
 ---
 import Navbar from "../shared/Navbar.astro";
 import Footer from "../shared/Footer.astro";
-import "prismjs/themes/prism-tomorrow.css";
 import "../../@tailwind.css";
 
 interface Props {
@@ -17,11 +16,13 @@ const { title, description = "Site par défaut" } = Astro.props as Props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- CSS Prism - Thème sombre qui va avec votre design -->
+
+    <!-- CSS Prism via CDN -->
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/themes/prism-tomorrow.min.css"
       rel="stylesheet"
     />
+
     <title>{title}</title><meta
       name="description"
       content={description}
@@ -35,50 +36,60 @@ const { title, description = "Site par défaut" } = Astro.props as Props;
     </main>
     <Footer />
 
-    <!-- Script Prism SIMPLE -->
+    <!-- Scripts Prism via CDN 
+    sur le site https://cdnjs.com/libraries/prism/1.30.0 
+    -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/prism.min.js"
+      integrity="sha512-HiD3V4nv8fcjtouznjT9TqDNDm1EXngV331YGbfVGeKUoH+OLkRTCMzA34ecjlgSQZpdHZupdSrqHY+Hz3l6uQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-css.min.js"
+      integrity="sha512-uMdVuOpm+9lNPCT7mV/YaMb9YQ/R4+eeON7aEMj6Ig/f4BoU+Q5k6iaZkDsX7LH9cjTHZt0CuKxbzd0/fndrWA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-javascript.min.js"
+      integrity="sha512-jwrwRWZWW9J6bjmBOJxPcbRvEBSQeY4Ad0NEXSfP0vwYi/Yu9x5VhDBl3wz6Pnxs8Rx/t1P8r9/OHCRciHcT7Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-typescript.min.js"
+      integrity="sha512-uOw7XYETzS/DPmmirpP5UCMihSDNMeyTS965J0/456OSPfxn9xEtHHjj5Q/5WefVdqyMfN/afmQnNpZd/tpkcA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-yaml.min.js"
+      integrity="sha512-6O/PZimM3TD1NN3yrazePA4AbZrPcwt1QCGJrVY7WoHDJROZFc9TlBvIKMe+QfqgcslW4lQeBzNJEJvIMC8WhA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-java.min.js"
+      integrity="sha512-xKcnbsdT0KMoA4yrozkqZM1XJVTrPsjdQwvigxlAlxEDu8YDvC/jl+LfVqn0fY3Vs6m2y4a89JCHEIA/Z9zpmQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.30.0/components/prism-bash.min.js"
+      integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+
+    <!-- Configuration des alias -->
     <script is:inline>
-      // Import Prism depuis node_modules
-      const script = document.createElement("script");
-      script.src = "/node_modules/prismjs/prism.js";
-      script.onload = function () {
-        // Charger les composants CSS et JS
-        const css = document.createElement("script");
-        css.src = "/node_modules/prismjs/components/prism-css.js";
-        document.head.appendChild(css);
-
-        const js = document.createElement("script");
-        js.src = "/node_modules/prismjs/components/prism-javascript.js";
-        document.head.appendChild(js);
-
-        const ts = document.createElement("script");
-        ts.src = "/node_modules/prismjs/components/prism-typescript.js";
-        document.head.appendChild(ts);
-
-        const yaml = document.createElement("script");
-        yaml.src = "/node_modules/prismjs/components/prism-yaml.js";
-        document.head.appendChild(yaml);
-
-        // AJOUTEZ JAVA ICI !
-        const java = document.createElement("script");
-        java.src = "/node_modules/prismjs/components/prism-java.js";
-        java.onload = function () {
-          // Alias et highlight
-          if (window.Prism) {
-            Prism.languages.ts = Prism.languages.typescript;
-            Prism.languages.js = Prism.languages.javascript;
-            //console.log("Java chargé:", Prism.languages.java); // ← Debug
-            Prism.highlightAll();
-          }
-        };
-        document.head.appendChild(java);
-      };
-      document.head.appendChild(script);
-
-      // CSS
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "/node_modules/prismjs/themes/prism-tomorrow.css";
-      document.head.appendChild(link);
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.Prism) {
+          Prism.languages.ts = Prism.languages.typescript;
+          Prism.languages.js = Prism.languages.javascript;
+          Prism.highlightAll();
+        }
+      });
     </script>
   </body>
 </html>
