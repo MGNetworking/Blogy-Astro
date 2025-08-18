@@ -41,7 +41,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
         {
           allArticles.map((article: Article) => (
             <article
-              class="card-article cursor-pointer relative"
+              class="card-article card-animation cursor-pointer relative"
               onclick={`window.location.href='/Blogy-Astro/article/${article.id}'`}
               data-tags={JSON.stringify(article.tags)}
             >

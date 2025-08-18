@@ -1,0 +1,24 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ProjetComponent from "../../components/projetComponent.astro";
+import { getGithubArticles } from "../../services/github.js";
+
+export async function getStaticPaths() {
+  // Récupération SEULEMENT de l'index JSON (léger)
+  const mdFiles = await getGithubArticles(false);
+
+  // génération des path et des pages pour chaque filename
+  return mdFiles.map((file: any) => ({
+    params: {
+      slug: file.metadata.filename,
+    },
+  }));
+}
+
+// récupération des choix utilisateur
+const { slug } = Astro.params;
+---
+
+<Layout title="Article">
+  <ProjetComponent slug={slug} />
+</Layout>

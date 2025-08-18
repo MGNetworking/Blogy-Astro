@@ -1,0 +1,135 @@
+---
+import { getGithubArticles } from "../services/github.js";
+import type { GitHubFile, Article } from "../type/github.ts";
+import { getTagClass } from "../utils/tagService.js";
+import TagFilter from "./TagFilter.astro";
+
+// Récupérer et traiter les projets (même source que les articles)
+const mdFiles = await getGithubArticles(false);
+const allArticles = mdFiles.map((file: GitHubFile) => ({
+  id: file.metadata.filename,
+  title: file.metadata.title,
+  date: file.metadata.date,
+  time: file.metadata.time,
+  author: file.metadata.author,
+  tags: file.metadata.tags,
+  description: file.metadata.description,
+  img: file.metadata.img,
+}));
+
+// Filtrer uniquement les projets (si vous avez un système de catégorisation)
+// Sinon, utilisez tous les articles comme projets
+const allProjects = allArticles; // ou filtrez selon vos critères
+---
+
+<!-- Projects Section -->
+<section class="py-20">
+  <div class="section-container">
+    <div class="text-center mb-16">
+      <h2 class="section-title">Projets récents</h2>
+      <p class="section-subtitle">
+        Découvrez quelques-uns de mes derniers projets et réalisations
+      </p>
+    </div>
+
+    <!-- COMPOSANT DE FILTRAGE PAR TAGS (réutilisation du composant existant) -->
+    <TagFilter articles={allProjects} />
+
+    <!-- LISTE DES PROJETS -->
+    <div class="grid-cards" id="articles-container">
+      {
+        allProjects.map((project: Article) => (
+          <div
+            class="card card-animation cursor-pointer flex flex-col h-full"
+            onclick={`window.location.href='/Blogy-Astro/projet/${project.id}'`}
+            data-tags={JSON.stringify(project.tags)}
+          >
+            {/* Image du projet */}
+            <div class="project-image flex-shrink-0">
+              {project.img ? (
+                <img
+                  src={project.img}
+                  alt={project.title}
+                  class="w-full h-48 object-cover"
+                />
+              ) : (
+                <div class="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                  <svg
+                    class="w-12 h-12 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm2 2a1 1 0 000 2h8a1 1 0 100-2H5z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              )}
+            </div>
+
+            <div class="p-6 flex flex-col flex-grow">
+              {/* Métadonnées (optionnel pour les projets) */}
+              {(project.date || project.time) && (
+                <div class="text-sm text-gray-400 mb-4 flex-shrink-0">
+                  {project.date && <span>{project.date}</span>}
+                  {project.date && project.time && <span class="mx-2">•</span>}
+                  {project.time && <span>{project.time}</span>}
+                </div>
+              )}
+
+              {/* Titre */}
+              <h3 class="text-xl font-semibold text-white mb-2 flex-shrink-0">
+                {project.title}
+              </h3>
+
+              {/* Description avec hauteur fixe */}
+              <div class="flex-grow">
+                {project.description && (
+                  <p class="text-gray-300 mb-4 h-12 overflow-hidden leading-6">
+                    {project.description.length > 100
+                      ? project.description.substring(0, 100) + "..."
+                      : project.description}
+                  </p>
+                )}
+              </div>
+
+              {/* Tags du projet */}
+              <div class="flex flex-wrap gap-2 mb-4 flex-shrink-0">
+                {project.tags.map((tag) => (
+                  <span class={getTagClass(tag)}>{tag}</span>
+                ))}
+              </div>
+
+              {/* Bouton toujours en bas */}
+              <div class="mt-auto flex-shrink-0">
+                <a
+                  href={`/Blogy-Astro/projet/${project.id}`}
+                  class="btn-link mt-3 inline-flex items-center mb-6"
+                >
+                  <span>En savoir plus</span>
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    class="w-4 h-4 ml-2 arrow-icon"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="/projects" class="btn-primary"> Voir tous mes projets </a>
+    </div>
+  </div>
+</section>

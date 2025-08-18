@@ -1,7 +1,8 @@
 import { marked } from "marked";
 
 const GITHUB_USER = "MGNetworking";
-const GITHUB_REPO = "MD-Article";
+const GITHUB_REPO_ARTICLE = "MD-Article";
+const GITHUB_REPO_PROJET = "MD-Projet";
 
 const headers = {
   Authorization: `token ${import.meta.env.TOKEN_GITHUB}`,
@@ -18,13 +19,27 @@ marked.setOptions({
   smartypants: false, // Désactive la conversion automatique des guillemets
 });
 
-/* Récupération des meta données en JSON (léger) */
-export async function getGithubArticles() {
+/**
+ * Récupération des meta données en JSON (léger)
+ * @param {boolean} [repo:true] - Si true: récupère les articles, si false: récupère les projets
+ * @returns {GitHubFile[]} La réponse de l'API GitHub contenant l'index JSON
+ * @throws {Error} Erreur si la requête échoue
+ */
+export async function getGithubArticles(repo = true) {
+  let response;
+
   // Récupération SEULEMENT de l'index JSON
-  const response = await fetch(
-    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/index.json`,
-    { headers }
-  );
+  if (repo) {
+    response = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO_ARTICLE}/contents/index.json`,
+      { headers }
+    );
+  } else {
+    response = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO_PROJET}/contents/index.json`,
+      { headers }
+    );
+  }
 
   if (!response.ok) {
     throw new Error(
@@ -57,14 +72,24 @@ export async function getGithubArticles() {
   }));
 }
 
-export async function getGithubArticle(slug) {
-  const fileResponse = await fetch(
-    `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/articles/${slug}.md`,
-    { headers }
-  );
+export async function getGithubArticle(slug, repo = true) {
+  let fileResponse;
+
+  console.log(`repo ${repo}`);
+  if (repo) {
+    fileResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO_ARTICLE}/contents/articles/${slug}.md`,
+      { headers }
+    );
+  } else {
+    fileResponse = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO_PROJET}/contents/articles/${slug}.md`,
+      { headers }
+    );
+  }
 
   if (!fileResponse.ok) {
-    throw new Error(`Article ${slug} non trouvé`);
+    throw new Error(`Article ou projet : ${slug} non trouvé`);
   }
 
   const fileData = await fileResponse.json();
