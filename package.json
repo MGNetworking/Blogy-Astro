@@ -15,7 +15,6 @@
     "astro": "^5.12.8",
     "marked": "^16.1.2",
     "marked-gfm-heading-id": "^4.1.2",
-    "prismjs": "^1.30.0",
     "tailwindcss": "^4.1.11"
   }
 }
