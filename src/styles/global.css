@@ -311,6 +311,10 @@ body {
     border: 1px solid #4b5563;
   }
 
+  code[class*="language-"] {
+    background: transparent !important;
+  }
+
   /* Blocs de code */
   pre {
     background-color: #111827;
@@ -330,6 +334,241 @@ body {
     border-radius: 0;
     font-size: 0.875rem;
     border: none;
+  }
+
+  /* Ajustements pour Prism */
+  pre[class*="language-"] {
+    background-color: #0d1117 !important; /* GitHub Dark background */
+    border: 1px solid #30363d;
+  }
+
+  /* === COLORATION GITHUB DARK EXACTE === */
+
+  /* Mots-clés (const, let, function, class, if, return, etc.) */
+  .token.keyword {
+    color: #ff7b72; /* Rouge GitHub exact */
+    font-weight: normal;
+  }
+
+  /* Chaînes de caractères */
+  .token.string {
+    color: #a5d6ff; /* Bleu clair GitHub exact */
+  }
+
+  /* Commentaires */
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #8b949e; /* Gris GitHub exact */
+    font-style: italic;
+  }
+
+  /* Fonctions et méthodes */
+  .token.function,
+  .token.function-name {
+    color: #d2a8ff; /* Violet GitHub exact */
+  }
+
+  /* Propriétés CSS et JSON */
+  .token.property {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  /* Sélecteurs CSS */
+  .token.selector {
+    color: #7ee787; /* Vert GitHub exact */
+  }
+
+  /* Nombres */
+  .token.number {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  /* Opérateurs et ponctuation */
+  .token.operator,
+  .token.punctuation {
+    color: #c9d1d9; /* Blanc GitHub exact */
+  }
+
+  /* Variables */
+  .token.variable {
+    color: #ffa657; /* Orange GitHub exact */
+  }
+
+  /* Balises HTML */
+  .token.tag {
+    color: #7ee787; /* Vert GitHub exact */
+  }
+
+  /* Attributs HTML */
+  .token.attr-name {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  /* Valeurs d'attributs */
+  .token.attr-value {
+    color: #a5d6ff; /* Bleu clair GitHub exact */
+  }
+
+  /* Classes CSS et noms de classe */
+  .token.class-name {
+    color: #ffa657; /* Orange GitHub exact */
+  }
+
+  /* Booléens (true, false) */
+  .token.boolean {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  /* null, undefined */
+  .token.null,
+  .token.undefined {
+    color: #ff7b72; /* Rouge GitHub exact */
+  }
+
+  /* Important/!important */
+  .token.important {
+    color: #ff7b72; /* Rouge GitHub exact */
+    font-weight: bold;
+  }
+
+  /* URLs */
+  .token.url {
+    color: #a5d6ff; /* Bleu clair GitHub exact */
+  }
+
+  /* Regex */
+  .token.regex {
+    color: #7ee787; /* Vert GitHub exact */
+  }
+
+  /* Délimiteurs */
+  .token.delimiter {
+    color: #c9d1d9; /* Blanc GitHub exact */
+  }
+
+  /* Constantes */
+  .token.constant {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  /* === LANGAGE SPÉCIFIQUE === */
+
+  /* JavaScript/TypeScript template literals (`string`) */
+  .language-javascript .token.template-string,
+  .language-typescript .token.template-string {
+    color: #a5d6ff; /* Bleu clair GitHub exact */
+  }
+
+  /* CSS hexcodes (#ffffff) */
+  .language-css .token.hexcode {
+    color: #a5d6ff; /* Bleu clair GitHub exact */
+  }
+
+  /* CSS values */
+  .language-css .token.color {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  /* JSON propriétés */
+  .language-json .token.property {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  /* === JAVA SPÉCIFIQUE === */
+  .language-java .token.keyword {
+    color: #ff7b72; /* Rouge GitHub exact */
+  }
+
+  .language-java .token.class-name {
+    color: #ffa657; /* Orange GitHub exact */
+  }
+
+  .language-java .token.annotation {
+    color: #d2a8ff; /* Violet GitHub exact */
+  }
+
+  .language-java .token.string {
+    color: #a5d6ff; /* Bleu clair GitHub exact */
+  }
+
+  .language-java .token.function {
+    color: #d2a8ff; /* Violet GitHub exact */
+  }
+
+  .language-java .token.number {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  .language-java .token.boolean {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  .language-java .token.null {
+    color: #ff7b72; /* Rouge GitHub exact */
+  }
+
+  .language-java .token.comment {
+    color: #3dcf38;
+  }
+
+  /* === YAML SPÉCIFIQUE === */
+  .language-yaml .token.key,
+  .language-yml .token.key {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  .language-yaml .token.string,
+  .language-yml .token.string {
+    color: #a5d6ff; /* Bleu clair GitHub exact */
+  }
+
+  .language-yaml .token.number,
+  .language-yml .token.number {
+    color: #79c0ff; /* Bleu GitHub exact */
+  }
+
+  .language-yaml .token.boolean,
+  .language-yml .token.boolean {
+    color: #ff7b72; /* Rouge GitHub exact */
+  }
+
+  .language-yaml .token.indicator,
+  .language-yml .token.indicator {
+    color: #ff7b72; /* Rouge GitHub exact */
+  }
+
+  /* === BASH/SHELL SPÉCIFIQUE === */
+  .language-bash .token.function,
+  .language-shell .token.function {
+    color: #d2a8ff; /* Violet GitHub exact */
+  }
+
+  .language-bash .token.parameter,
+  .language-shell .token.parameter {
+    color: #ffa657; /* Orange GitHub exact */
+  }
+
+  /* === PYTHON SPÉCIFIQUE === */
+  .language-python .token.keyword {
+    color: #ff7b72; /* Rouge GitHub exact */
+  }
+
+  .language-python .token.function {
+    color: #d2a8ff; /* Violet GitHub exact */
+  }
+
+  .language-python .token.decorator {
+    color: #ffa657; /* Orange GitHub exact */
+  }
+
+  /* Ajoutez juste ça dans votre CSS */
+  .language-yaml .token.key {
+    color: #79c0ff;
+  }
+  .language-yaml .token.string {
+    color: #a5d6ff;
   }
 
   /* === CITATIONS === */

@@ -1,7 +1,7 @@
 ---
 import Navbar from "../shared/Navbar.astro";
 import Footer from "../shared/Footer.astro";
-
+import "prismjs/themes/prism-tomorrow.css";
 import "../../@tailwind.css";
 
 interface Props {
@@ -17,14 +17,68 @@ const { title, description = "Site par défaut" } = Astro.props as Props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-  </head>
+    <!-- CSS Prism - Thème sombre qui va avec votre design -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+      rel="stylesheet"
+    />
+    <title>{title}</title><meta
+      name="description"
+      content={description}
+    /></head
+  >
+
   <body>
     <Navbar />
     <main>
       <slot />
     </main>
     <Footer />
+
+    <!-- Script Prism SIMPLE -->
+    <script is:inline>
+      // Import Prism depuis node_modules
+      const script = document.createElement("script");
+      script.src = "/node_modules/prismjs/prism.js";
+      script.onload = function () {
+        // Charger les composants CSS et JS
+        const css = document.createElement("script");
+        css.src = "/node_modules/prismjs/components/prism-css.js";
+        document.head.appendChild(css);
+
+        const js = document.createElement("script");
+        js.src = "/node_modules/prismjs/components/prism-javascript.js";
+        document.head.appendChild(js);
+
+        const ts = document.createElement("script");
+        ts.src = "/node_modules/prismjs/components/prism-typescript.js";
+        document.head.appendChild(ts);
+
+        const yaml = document.createElement("script");
+        yaml.src = "/node_modules/prismjs/components/prism-yaml.js";
+        document.head.appendChild(yaml);
+
+        // AJOUTEZ JAVA ICI !
+        const java = document.createElement("script");
+        java.src = "/node_modules/prismjs/components/prism-java.js";
+        java.onload = function () {
+          // Alias et highlight
+          if (window.Prism) {
+            Prism.languages.ts = Prism.languages.typescript;
+            Prism.languages.js = Prism.languages.javascript;
+            //console.log("Java chargé:", Prism.languages.java); // ← Debug
+            Prism.highlightAll();
+          }
+        };
+        document.head.appendChild(java);
+      };
+      document.head.appendChild(script);
+
+      // CSS
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "/node_modules/prismjs/themes/prism-tomorrow.css";
+      document.head.appendChild(link);
+    </script>
   </body>
 </html>
