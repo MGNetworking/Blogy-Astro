@@ -273,6 +273,56 @@ body {
   @apply text-sm text-gray-400 whitespace-nowrap;
 }
 
+/* Animations pour les SVG de contact */
+.contacts-icon {
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.contacts-icon:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Animation spécifique pour chaque contact */
+.contacts-icon:hover svg {
+  transform: rotate(20deg);
+  transition: transform 0.3s ease;
+}
+
+/* Couleurs spécifiques au survol */
+a:hover .contacts-icon {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Effet de pulsation optionnel */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+.contacts-icon:hover {
+  animation: pulse 2s infinite;
+}
+
+/* Animation du texte au survol */
+a:hover h3 {
+  color: #f59e0b;
+  transition: color 0.3s ease;
+}
+
+a:hover p {
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
 /* CSS COMPLET POUR CONTENU MARKDOWN → HTML */
 /* À placer dans src/styles/markdown-content.css */
 
