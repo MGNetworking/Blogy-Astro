@@ -4,15 +4,64 @@
     <div class="text-center mb-16">
       <h2 class="section-title">Mes compétences</h2>
       <p class="section-subtitle">
-        Technologies et outils que j'utilise pour créer des expériences
-        exceptionnelles
+        Technologies et outils que j'utilise pour créer des infrastructures
+        robustes et des expériences exceptionnelles
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Frontend -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- 1. Architecture Microservices (Orange) -->
       <div class="card p-8">
-        <div class="skill-icon-blue">
+        <div class="skill-icon-orange">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-white mb-4">
+          Architecture Microservices
+        </h3>
+        <div class="skill-level text-amber-400">Niveau : Intermédiaire</div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Spring Cloud Gateway</span>
+            <span class="skill-percentage text-amber-400">60%</span>
+          </div>
+          <div class="text-xs text-gray-400 mb-2">
+            Spring Boot 2.4.5 → 3.5.4
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-orange" style="width: 60%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • API Gateway pour plus de 15 services
+          </div>
+        </div>
+
+        <div class="business-impact">
+          <div class="text-sm text-white font-medium mb-2">
+            💼 Valeur client :
+          </div>
+          <div class="text-xs text-gray-400">
+            Architecture évolutive & maintenance simplifiée
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Frontend & Development (Cyan) -->
+      <div class="card p-8">
+        <div class="skill-icon-cyan">
           <svg
             class="w-6 h-6"
             fill="none"
@@ -26,18 +75,113 @@
               d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
           </svg>
         </div>
-        <h3 class="text-xl font-semibold text-white mb-4">Frontend</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li>React / Next.js</li>
-          <li>Vue.js / Nuxt.js</li>
-          <li>TypeScript</li>
-          <li>TailwindCSS</li>
-        </ul>
+        <h3 class="text-xl font-semibold text-white mb-4">
+          Frontend & Development
+        </h3>
+        <div class="skill-level text-cyan-400">Niveau : Intermédiaire</div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Angular SPA</span>
+            <span class="skill-percentage text-cyan-400">60%</span>
+          </div>
+          <div class="text-xs text-gray-400 mb-2">Angular v14 → v18</div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-cyan" style="width: 60%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Applications responsive modernes
+          </div>
+        </div>
+
+        <div class="business-impact">
+          <div class="text-sm text-white font-medium mb-2">
+            💼 Valeur client :
+          </div>
+          <div class="text-xs text-gray-400">
+            Interface utilisateur intuitive & performante
+          </div>
+        </div>
       </div>
 
-      <!-- Backend -->
+      <!-- 3. Automatisation & Déploiement (Green) -->
       <div class="card p-8">
         <div class="skill-icon-green">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            ></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-white mb-4">
+          Automatisation & Déploiement
+        </h3>
+        <div class="skill-level text-emerald-400">
+          Niveau : Intermédiaire à Avancé
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Jenkins CI/CD</span>
+            <span class="skill-percentage text-emerald-400">70%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 60%"></div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Création de librairie groovy
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">GitHub Action</span>
+            <span class="skill-percentage text-emerald-400">20%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 20%"></div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Déploiements du projet actuelle
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Nginx Load Balancer</span>
+            <span class="skill-percentage text-emerald-400">70%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 70%"></div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            <p>• Répartition de charge multi-services</p>
+            <p>• Création des fichiers de conf personnaliser</p>
+          </div>
+        </div>
+
+        <div class="business-impact">
+          <div class="text-sm text-white font-medium mb-2">
+            💼 Valeur client :
+          </div>
+          <div class="text-xs text-gray-400">
+            Zéro temps d'arrêt lors des mises à jour
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Infrastructure & Virtualisation (Blue) -->
+      <div class="card p-8">
+        <div class="skill-icon-blue">
           <svg
             class="w-6 h-6"
             fill="none"
@@ -52,16 +196,53 @@
             ></path>
           </svg>
         </div>
-        <h3 class="text-xl font-semibold text-white mb-4">Backend</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li>Node.js / Express</li>
-          <li>Python / FastAPI</li>
-          <li>PostgreSQL / MongoDB</li>
-          <li>Redis</li>
-        </ul>
+        <h3 class="text-xl font-semibold text-white mb-4">
+          Infrastructure & Virtualisation
+        </h3>
+        <div class="skill-level text-blue-400">
+          Niveau : Débutant à Intermédiaire
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">ESXi 6.7 (Hyperviseur)</span
+            >
+            <span class="skill-percentage text-blue-400">50%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-blue" style="width: 50%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Environnement de test et développement
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Ubuntu Server</span>
+            <span class="skill-percentage text-blue-400">60%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-blue" style="width: 60%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Administration système depuis plus de 3 ans
+          </div>
+        </div>
+
+        <div class="business-impact">
+          <div class="text-sm text-white font-medium mb-2">
+            💼 Valeur client :
+          </div>
+          <div class="text-xs text-gray-400">
+            Environnement de test et développement
+          </div>
+        </div>
       </div>
 
-      <!-- Tools -->
+      <!-- 5. Sécurité & Authentification (Purple) -->
       <div class="card p-8">
         <div class="skill-icon-purple">
           <svg
@@ -74,27 +255,125 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
             ></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-white mb-4">
+          Sécurité & Authentification
+        </h3>
+        <div class="skill-level text-purple-400">Niveau : Intermédiaire</div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Keycloak SSO</span>
+            <span class="skill-percentage text-purple-400">60%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-purple" style="width: 60%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            <p>• Authentification multi-tenant</p>
+            <p>• Gestion OpenID Connect et OAuth2</p>
+          </div>
+        </div>
+
+        <div class="business-impact">
+          <div class="text-sm text-white font-medium mb-2">
+            💼 Valeur client :
+          </div>
+          <div class="text-xs text-gray-400">
+            Sécurité renforcée & gestion centralisée
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Conteneurisation & Orchestration (Red) -->
+      <div class="card p-8">
+        <div class="skill-icon-red">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+            ></path>
           </svg>
         </div>
-        <h3 class="text-xl font-semibold text-white mb-4">Outils</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li>Git / GitHub</li>
-          <li>Docker</li>
-          <li>AWS / Vercel</li>
-          <li>Figma</li>
-        </ul>
+        <h3 class="text-xl font-semibold text-white mb-4">
+          Conteneurisation & Orchestration
+        </h3>
+        <div class="skill-level text-red-400">
+          Niveau : Débutant à Intermédiaire
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Docker</span>
+            <span class="skill-percentage text-red-400">60%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-red" style="width: 60%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Conteneurisation d'applications
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Docker Swarm</span>
+            <span class="skill-percentage text-red-400">40%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-red" style="width: 40%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Orchestration de conteneurs
+          </div>
+        </div>
+
+        <div class="skill-item">
+          <div class="skill-name">
+            <span class="text-gray-300 font-medium">Kubernetes</span>
+            <span class="skill-percentage text-red-400">15%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill progress-fill-red" style="width: 15%">
+            </div>
+          </div>
+          <div class="skill-metric text-xs text-gray-400">
+            • Orchestration avancée (apprentissage)
+          </div>
+        </div>
+
+        <div class="business-impact">
+          <div class="text-sm text-white font-medium mb-2">
+            💼 Valeur client :
+          </div>
+          <div class="text-xs text-gray-400">
+            Déploiements cohérents et scalables
+          </div>
+        </div>
       </div>
     </div>
-
     <div class="text-center mt-12">
-      <a href="/skills" class="btn-primary"> Voir toutes mes compétences </a>
+      <a
+        href="https://github.com/MGNetworking"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-primary"
+      >
+        Mon Github
+      </a>
     </div>
   </div>
 </section>

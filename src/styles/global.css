@@ -120,6 +120,90 @@ body {
   @apply w-12 h-12 bg-purple-500/20 text-purple-400 rounded-xl flex items-center justify-center mb-6 border border-purple-500/30;
 }
 
+@utility skill-icon-orange {
+  @apply w-12 h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center mb-6 border border-orange-500/30;
+}
+
+@utility skill-icon-cyan {
+  @apply w-12 h-12 bg-cyan-500/20 text-cyan-400 rounded-xl flex items-center justify-center mb-6 border border-cyan-500/30;
+}
+
+@utility skill-icon-red {
+  @apply w-12 h-12 bg-red-500/20 text-red-400 rounded-xl flex items-center justify-center mb-6 border border-red-500/30;
+}
+
+/* Ajouts pour les compétences améliorées */
+.progress-bar {
+  background: rgba(71, 85, 105, 0.3);
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-fill-blue {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.progress-fill-purple {
+  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+}
+
+.progress-fill-orange {
+  background: linear-gradient(90deg, #f59e0b, #d97706);
+}
+
+.progress-fill-cyan {
+  background: linear-gradient(90deg, #06b6d4, #0891b2);
+}
+
+.progress-fill-red {
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.skill-metric {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-top: 6px;
+}
+
+.skill-level {
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.skill-item {
+  margin-bottom: 1rem;
+}
+
+.skill-name {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.skill-percentage {
+  font-size: 0.75rem;
+}
+
+.business-impact {
+  margin-top: 1rem;
+  padding: 12px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 8px;
+  border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
 /* LAYOUT */
 @utility section-container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
