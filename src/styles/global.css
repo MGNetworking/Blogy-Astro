@@ -129,6 +129,7 @@ body {
 }
 
 /* ICÔNES COMPÉTENCES */
+/* ICÔNES COMPÉTENCES */
 @utility skill-icon-blue {
   @apply w-12 h-12 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center  mb-6 border border-blue-500/30;
 }
@@ -142,7 +143,7 @@ body {
 }
 
 @utility skill-icon-orange {
-  @apply w-12 h-12 bg-orange-500/20 text-orange-400 rounded-xl flex items-center justify-center mb-6 border border-orange-500/30;
+  @apply w-12 h-12 bg-orange-500/20 text-orange-500 rounded-xl flex items-center justify-center mb-6 border border-orange-500/30;
 }
 
 @utility skill-icon-cyan {
@@ -153,40 +154,209 @@ body {
   @apply w-12 h-12 bg-red-500/20 text-red-400 rounded-xl flex items-center justify-center mb-6 border border-red-500/30;
 }
 
-/* Ajouts pour les compétences améliorées */
+@utility skill-icon-yellow {
+  @apply w-12 h-12 bg-yellow-500/20 text-yellow-400 rounded-xl flex items-center justify-center mb-6 border border-yellow-500/30;
+}
+
+/* Styles pour les icônes colorées */
+.skill-icon-orange {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  border-radius: 0.75rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.skill-icon-cyan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  border-radius: 0.75rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.skill-icon-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 0.75rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.skill-icon-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border-radius: 0.75rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.skill-icon-purple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-radius: 0.75rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.skill-icon-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-radius: 0.75rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.skill-icon-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, #eab308, #d97706);
+  border-radius: 0.75rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+/* Styles pour les barres de progression */
 .progress-bar {
-  background: rgba(71, 85, 105, 0.3);
-  height: 6px;
-  border-radius: 3px;
+  width: 100%;
+  height: 0.5rem;
+  background-color: #374151;
+  border-radius: 0.25rem;
   overflow: hidden;
-  margin-top: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #10b981, #059669);
-  border-radius: 3px;
+  border-radius: 0.25rem;
   transition: width 0.3s ease;
 }
 
-.progress-fill-blue {
-  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-}
-
-.progress-fill-purple {
-  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
-}
-
 .progress-fill-orange {
-  background: linear-gradient(90deg, #f59e0b, #d97706);
+  background: linear-gradient(90deg, #f97316, #ea580c);
 }
 
 .progress-fill-cyan {
   background: linear-gradient(90deg, #06b6d4, #0891b2);
 }
 
+.progress-fill-blue {
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.progress-fill-purple {
+  background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+}
+
 .progress-fill-red {
   background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.progress-fill-yellow {
+  background: linear-gradient(90deg, #eab308, #d97706);
+}
+
+/* Styles pour les éléments de compétences */
+.skill-item {
+  margin-bottom: 1.5rem;
+}
+
+.skill-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.skill-percentage {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.skill-level {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.skill-metric {
+  margin-top: 0.5rem;
+}
+
+.business-impact {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #374151;
+}
+
+/* Styles généraux */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.card {
+  background: linear-gradient(135deg, #1f2937, #111827);
+  border-radius: 1rem;
+  border: 1px solid #374151;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #6b7280;
+}
+
+/* Ajouts pour les compétences améliorées (vos styles originaux) */
+.progress-bar {
+  background: rgba(71, 85, 105, 0.3);
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
 }
 
 .skill-metric {
