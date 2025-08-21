@@ -5,17 +5,52 @@
  * Utilisé partout dans l'application pour une cohérence visuelle
  */
 const TAG_CLASSES = {
+  // 🔵 PERFORMANCE & MONITORING (tech-blue)
   performance: "tech-blue",
+
+  // 🟢 FRAMEWORKS FRONTEND (tech-green)
   astro: "tech-green",
   react: "tech-green",
   vue: "tech-green",
+  vuejs: "tech-green",
   angular: "tech-green",
   web: "tech-green",
-  markdown: "tech-green",
+
+  // 🟡 LANGAGES SCRIPT/DYNAMIQUES (tech-yellow)
   typescript: "tech-yellow",
   javascript: "tech-yellow",
-  css: "tech-pink",
+  bash: "tech-yellow",
+  sh: "tech-yellow",
+  groovy: "tech-yellow",
+
+  // 🔴 LANGAGES WEB DE BASE (tech-red)
   html: "tech-red",
+  css: "tech-red",
+  markdown: "tech-red",
+
+  // 🟣 LANGAGES BACKEND/COMPILÉS (tech-purple)
+  java: "tech-purple",
+  "c#": "tech-purple",
+  spring: "tech-purple",
+  ".net": "tech-purple",
+  nodejs: "tech-purple",
+
+  // 🟠 DEVOPS & INFRASTRUCTURE (tech-orange)
+  docker: "tech-orange",
+  "docker swarm": "tech-orange",
+  kubernetes: "tech-orange",
+  jenkins: "tech-orange",
+  nginx: "tech-orange",
+  "github actions": "tech-orange",
+
+  // ⚫ SYSTÈMES & OS (tech-gray)
+  ubuntu: "tech-gray",
+  linux: "tech-gray",
+  esxi: "tech-gray",
+
+  // 🔷 OUTILS & PLATEFORMES (tech-cyan - nouvelle couleur)
+  github: "tech-cyan",
+  keycloak: "tech-cyan",
 };
 
 /**
