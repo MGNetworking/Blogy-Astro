@@ -13,7 +13,7 @@ Un portfolio moderne et performant développé avec Astro, permettant de publier
   - [Installation](#installation)
 - [🧞 Commandes](#-commandes)
 - [✍️ Ajouter un nouvel article](#️-ajouter-un-nouvel-article)
-- [🚀 Déploiement](#-déploiement)
+- [🚀 CI/CD & Déploiement](#-cicd--déploiement)
 - [📈 Performance](#-performance)
 - [🎨 Personnalisation](#-personnalisation)
   - [Thème](#thème)
@@ -25,7 +25,7 @@ Un portfolio moderne et performant développé avec Astro, permettant de publier
 
 ## 🚀 Aperçu
 
-Ce site statique combine performance et simplicité pour créer un portfolio professionnel avec une section blog intégrée. Il est automatiquement déployé sur GitHub Pages à chaque modification.
+Ce site statique combine performance et simplicité pour créer un portfolio professionnel avec une section blog intégrée. Il est automatiquement déployé sur GitHub Pages à chaque modification grâce à **GitHub Actions**.
 
 ### ✨ Fonctionnalités
 
@@ -33,7 +33,7 @@ Ce site statique combine performance et simplicité pour créer un portfolio pro
 - **Performance optimisée** : Site statique généré avec Astro
 - **Responsive design** : Adapté à tous les écrans
 - **SEO optimisé** : Meta tags, sitemap et structure sémantique
-- **Déploiement automatique** : CI/CD via GitHub Actions
+- **CI/CD automatisé** : Déploiement automatique via **GitHub Actions**
 - **Thème sombre/clair** : Basculement automatique selon les préférences utilisateur
 
 ## 🛠️ Technologies utilisées
@@ -42,12 +42,15 @@ Ce site statique combine performance et simplicité pour créer un portfolio pro
 - **TypeScript** - Typage statique pour plus de robustesse
 - **Markdown** - Format de rédaction des articles
 - **CSS/SCSS** - Styles personnalisés et responsive
-- **GitHub Actions** - Pipeline CI/CD
+- **GitHub Actions** - Pipeline CI/CD automatisé
 - **GitHub Pages** - Hébergement gratuit
 
 ## 📁 Structure du projet
 
 ```
+├── .github/
+│   └── workflows/
+│       └── deploy.yml        # Pipeline GitHub Actions
 ├── src/
 │   ├── components/
 │   │   ├── TagFilter.astro
@@ -137,15 +140,62 @@ Toutes les commandes sont exécutées depuis la racine du projet, depuis un term
 | `npm run astro -- --help` | Affiche l'aide pour l'utilisation de l'Astro CLI               |
 | `npm run test`            | Lance les tests !                                              |
 
-## 🚀 Déploiement
+## 🚀 CI/CD & Déploiement
 
-Le site est automatiquement déployé sur GitHub Pages via GitHub Actions :
+### Pipeline automatisé avec GitHub Actions
 
-1. **Push sur main** → Déclenche le workflow
-2. **Build Astro** → Génère les fichiers statiques
-3. **Déploiement** → Publication sur GitHub Pages
+Ce projet utilise **GitHub Actions** pour automatiser le processus de déploiement :
 
-Le workflow se trouve dans `.github/workflows/deploy.yml`
+#### 🔄 Workflow de déploiement
+
+Le pipeline `.github/workflows/deploy.yml` s'exécute automatiquement :
+
+- **Déclenchement** : À chaque push sur la branche `master`
+- **Environnement** : Ubuntu Latest avec Node.js 22
+- **Étapes** :
+  1. ✅ Checkout du code source
+  2. ⚙️ Configuration de l'environnement Node.js
+  3. 📦 Installation des dépendances (`npm ci`)
+  4. 🏗️ Build du projet Astro
+  5. 🚀 Déploiement automatique sur GitHub Pages
+
+#### 🛠️ Configuration technique
+
+```yaml
+# Déclencheurs
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: # Déclenchement manuel
+
+# Permissions
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+```
+
+#### 🚦 Processus de déploiement
+
+1. **Push sur master** → Déclenche automatiquement le workflow
+2. **Build Astro** → Génère les fichiers statiques optimisés
+3. **Upload artifact** → Prépare les fichiers pour le déploiement
+4. **Deploy to Pages** → Publication sur GitHub Pages
+
+### 📊 Statut du déploiement
+
+- **Temps moyen** : ~2-3 minutes
+- **Historique** : Consultable dans l'onglet "Actions" du repository
+- **Notifications** : Automatiques en cas d'échec de build
+
+## ✍️ Ajouter un nouvel article
+
+Pour ajouter un nouvel article, il suffit de :
+
+1. Créer un fichier `.md` dans le dossier approprié
+2. Ajouter le front matter YAML
+3. Rédiger le contenu en Markdown
+4. Commit et push → **Le déploiement se fait automatiquement !**
 
 ## 📈 Performance
 
@@ -153,6 +203,7 @@ Le workflow se trouve dans `.github/workflows/deploy.yml`
 - **Temps de chargement** : < 1s
 - **Taille des bundles** : Optimisée avec tree-shaking automatique
 - **Images** : Optimisation automatique via Astro
+- **Déploiement** : Automatisé avec GitHub Actions (0 temps d'intervention manuelle)
 
 ## 🎨 Personnalisation
 
@@ -180,6 +231,8 @@ Les suggestions et améliorations sont les bienvenues ! N'hésitez pas à :
 - Proposer une pull request pour une amélioration
 - Partager vos idées dans les discussions
 
+**Note** : Chaque pull request déclenche automatiquement les tests via GitHub Actions.
+
 ## 📞 Contact
 
 - **Email** : ghalem.maxime@gmail.com
@@ -187,4 +240,4 @@ Les suggestions et améliorations sont les bienvenues ! N'hésitez pas à :
 
 ---
 
-_Développé avec ❤️ et Astro_
+_Développé avec ❤️, Astro et automatisé avec GitHub Actions_
