@@ -182,10 +182,8 @@ Les suggestions et améliorations sont les bienvenues ! N'hésitez pas à :
 
 ## 📞 Contact
 
-- **Portfolio** : [https://[votre-username].github.io/[nom-du-repo]](https://[votre-username].github.io/[nom-du-repo])
-- **Email** : votre.email@exemple.com
-- **LinkedIn** : [Votre profil LinkedIn](https://linkedin.com/in/votre-profil)
-- **GitHub** : [@votre-username](https://github.com/votre-username)
+- **Email** : ghalem.maxime@gmail.com
+- **LinkedIn** : [Votre profil LinkedIn](https://www.linkedin.com/in/maxime-ghalem/)
 
 ---
 
