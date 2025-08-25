@@ -73,7 +73,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
 
                 <!-- Bouton "En savoir plus" -->
                 <a
-                  href={`/Blogy-Astro/articlesPage/${article.id}`}
+                  onclick={`window.location.href='/Blogy-Astro/article/${article.id}'`}
                   class="btn-link mt-3 inline-flex items-center mb-6"
                 >
 
