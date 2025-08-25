@@ -11,16 +11,14 @@ const TAG_CLASSES = {
   // 🟢 FRAMEWORKS FRONTEND (tech-green)
   astro: "tech-green",
   react: "tech-green",
-  vue: "tech-green",
-  vuejs: "tech-green",
+  vue: "tech-green", // "vuejs" supprimé pour éviter la redondance
   angular: "tech-green",
   web: "tech-green",
 
   // 🟡 LANGAGES SCRIPT/DYNAMIQUES (tech-yellow)
   typescript: "tech-yellow",
   javascript: "tech-yellow",
-  bash: "tech-yellow",
-  sh: "tech-yellow",
+  shell: "tech-yellow", // Fusion de "bash" et "sh" pour plus de clarté
   groovy: "tech-yellow",
 
   // 🔴 LANGAGES WEB DE BASE (tech-red)
@@ -48,9 +46,18 @@ const TAG_CLASSES = {
   linux: "tech-gray",
   esxi: "tech-gray",
 
-  // 🔷 OUTILS & PLATEFORMES (tech-cyan - nouvelle couleur)
+  // 🔷 OUTILS & PLATEFORMES (tech-cyan)
   github: "tech-cyan",
   keycloak: "tech-cyan",
+
+  // 🟩 TESTING & QUALITY (tech-teal - nouvelle catégorie)
+  jest: "tech-teal",
+  junit: "tech-teal",
+  testng: "tech-teal",
+  playwright: "tech-teal",
+  cypress: "tech-teal",
+  selenium: "tech-teal",
+  puppeteer: "tech-teal",
 };
 
 /**

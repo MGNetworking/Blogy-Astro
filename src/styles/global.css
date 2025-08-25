@@ -80,6 +80,16 @@ body {
   @apply px-3 py-1 bg-emerald-500/20 text-emerald-300 text-sm rounded-full border border-emerald-500/30 backdrop-blur-sm;
 }
 
+/* Langages Script/Dynamiques */
+@utility tech-yellow {
+  @apply px-3 py-1 bg-yellow-500/20 text-yellow-300 text-sm rounded-full border border-yellow-500/30 backdrop-blur-sm;
+}
+
+/* Langages Web de Base */
+@utility tech-red {
+  @apply px-3 py-1 bg-red-500/20 text-red-300 text-sm rounded-full border border-red-500/30 backdrop-blur-sm;
+}
+
 /* Langages Backend/Compilés */
 @utility tech-purple {
   @apply px-3 py-1 bg-purple-500/20 text-purple-300 text-sm rounded-full border border-purple-500/30 backdrop-blur-sm;
@@ -90,29 +100,19 @@ body {
   @apply px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30 backdrop-blur-sm;
 }
 
-/* Langages Script/Dynamiques */
-@utility tech-yellow {
-  @apply px-3 py-1 bg-yellow-500/20 text-yellow-300 text-sm rounded-full border border-yellow-500/30 backdrop-blur-sm;
-}
-
 /* Systèmes & OS */
 @utility tech-gray {
   @apply px-3 py-1 bg-gray-500/20 text-gray-300 text-sm rounded-full border border-gray-500/30 backdrop-blur-sm;
 }
 
-/* Langages Web de Base */
-@utility tech-red {
-  @apply px-3 py-1 bg-red-500/20 text-red-300 text-sm rounded-full border border-red-500/30 backdrop-blur-sm;
-}
-
-/* Outils & Plateformes - NOUVELLE COULEUR */
+/* Outils & Plateformes */
 @utility tech-cyan {
   @apply px-3 py-1 bg-cyan-500/20 text-cyan-300 text-sm rounded-full border border-cyan-500/30 backdrop-blur-sm;
 }
 
-/* Alternative : Rose pour sécurité/auth si vous préférez séparer */
-@utility tech-rose {
-  @apply px-3 py-1 bg-rose-500/20 text-rose-300 text-sm rounded-full border border-rose-500/30 backdrop-blur-sm;
+/* Testing & Quality */
+@utility tech-teal {
+  @apply px-3 py-1 bg-teal-500/20 text-teal-300 text-sm rounded-full border border-teal-500/30 backdrop-blur-sm;
 }
 
 /* IMAGES PROJET */

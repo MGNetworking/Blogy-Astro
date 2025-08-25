@@ -14,7 +14,7 @@ Le système de tags permet d'associer des couleurs cohérentes aux technologies 
 
 - astro
 - react
-- vue / vuejs
+- vue
 - angular
 - web
 
@@ -22,7 +22,7 @@ Le système de tags permet d'associer des couleurs cohérentes aux technologies 
 
 - typescript
 - javascript
-- bash / sh
+- shell
 - groovy
 
 ### 🔴 Langages Web de Base (`tech-red`)
@@ -31,7 +31,7 @@ Le système de tags permet d'associer des couleurs cohérentes aux technologies 
 - css
 - markdown
 
-### 🟣 Langages Backend/Runtime (`tech-purple`)
+### 🟣 Langages Backend/Compilés (`tech-purple`)
 
 - java
 - c#
@@ -41,7 +41,8 @@ Le système de tags permet d'associer des couleurs cohérentes aux technologies 
 
 ### 🟠 DevOps & Infrastructure (`tech-orange`)
 
-- docker / docker swarm
+- docker
+- docker swarm
 - kubernetes
 - jenkins
 - nginx
@@ -58,17 +59,28 @@ Le système de tags permet d'associer des couleurs cohérentes aux technologies 
 - github
 - keycloak
 
+### 🟩 Testing & Quality (`tech-teal`)
+
+- jest
+- junit
+- testng
+- playwright
+- cypress
+- selenium
+- puppeteer
+
 ## Classes CSS disponibles
 
 ```css
-tech-blue    /* Bleu - Performance */
-tech-green   /* Vert - Frontend */
-tech-yellow  /* Jaune - Script */
-tech-red     /* Rouge - Web base */
-tech-purple  /* Violet - Backend */
-tech-orange  /* Orange - DevOps */
-tech-gray    /* Gris - Systèmes */
-tech-cyan    /* Cyan - Outils */
+tech-blue    /* Bleu - Performance & Monitoring */
+tech-green   /* Vert - Frameworks Frontend */
+tech-yellow  /* Jaune - Langages Script/Dynamiques */
+tech-red     /* Rouge - Langages Web de Base */
+tech-purple  /* Violet - Langages Backend/Compilés */
+tech-orange  /* Orange - DevOps & Infrastructure */
+tech-gray    /* Gris - Systèmes & OS */
+tech-cyan    /* Cyan - Outils & Plateformes */
+tech-teal   /* Teal - Testing & Quality */
 ```
 
 ## Utilisation
