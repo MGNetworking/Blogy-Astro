@@ -42,7 +42,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
           allArticles.map((article: Article) => (
             <article
               class="card-article card-animation cursor-pointer relative"
-              onclick={`window.location.href='/Blogy-Astro/article/${article.id}'`}
+              onclick={`window.location.href='/article/${article.id}'`}
               data-tags={JSON.stringify(article.tags)}
             >
               <div class="p-6">
@@ -57,7 +57,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
                 <!-- Titre de l'article -->
                 <h3 class="article-title">
                   <a
-                    href={`/Blogy-Astro/article/${article.id}`}
+                    href={`/article/${article.id}`}
                     class="article-title-link"
                   >
                     {article.title}
@@ -73,7 +73,7 @@ const allArticles = mdFiles.map((file: GitHubFile) => ({
 
                 <!-- Bouton "En savoir plus" -->
                 <a
-                  onclick={`window.location.href='/Blogy-Astro/article/${article.id}'`}
+                  onclick={`window.location.href='/article/${article.id}'`}
                   class="btn-link mt-3 inline-flex items-center mb-6"
                 >
 

@@ -41,7 +41,7 @@ const allProjects = allArticles; // ou filtrez selon vos critères
         allProjects.map((project: Article) => (
           <div
             class="card card-animation cursor-pointer flex flex-col h-full"
-            onclick={`window.location.href='/Blogy-Astro/projet/${project.id}'`}
+            onclick={`window.location.href='/projet/${project.id}'`}
             data-tags={JSON.stringify(project.tags)}
           >
             {/* Image du projet */}
@@ -105,7 +105,7 @@ const allProjects = allArticles; // ou filtrez selon vos critères
               {/* Bouton toujours en bas */}
               <div class="mt-auto flex-shrink-0">
                 <a
-                  href={`/Blogy-Astro/projet/${project.id}`}
+                  href={`/projet/${project.id}`}
                   class="btn-link mt-3 inline-flex items-center mb-6"
                 >
                   <span>En savoir plus</span>
